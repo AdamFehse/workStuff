@@ -50,7 +50,7 @@ if (confirm('Do you want to download the CSV file?')) {
     // Create a link element for download
     const csvLink = document.createElement('a');
     csvLink.href = URL.createObjectURL(csvBlob);
-    csvLink.download = 'FedStatePartnership.csv';  // Filename
+    csvLink.download = 'CurrentlyAccepting.csv';  // Filename
 
     // Trigger the download
     csvLink.click();
