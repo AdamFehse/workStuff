@@ -8,7 +8,7 @@ articles.forEach(article => {
     const href = article.querySelector('.grant-teaser__title a').href;
     const output = [...article.querySelectorAll('.grant-teaser__field')]
                    .map(field => field.textContent.trim())
-                   .filter(text => text.startsWith('Output')).join(', ');
+                   .filter(text => text.startsWith('Output')).join(' ');
 
     grants.push({
         title: title,
@@ -38,9 +38,14 @@ grants.forEach(grant => {
 
 function arrayToCSV(arr) {
     const header = Object.keys(arr[0]).join(',');  // Extract headers from the first object
-    const rows = arr.map(obj => Object.values(obj).join(','));  // Extract values for each row
+    const rows = arr.map(obj => 
+        Object.values(obj)
+            .map(value => `"${value.replace(/"/g, '""')}"`)  // Escape quotes and enclose each value in double quotes
+            .join(',')
+    );  // Extract values for each row
     return [header, ...rows].join('\n');
 }
+
 
 // Prompt the user for confirmation
 if (confirm('Do you want to download the CSV file?')) {
