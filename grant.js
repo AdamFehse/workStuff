@@ -1,41 +1,4 @@
-// Thi function parses the html from the NEH grants website.
-const articles = document.querySelectorAll('.grant-teaser');
-const grants = [];
-
-articles.forEach(article => {
-    const deadline = article.querySelector('.grant-teaser__date').textContent.trim().split(' ').pop();
-    const title = article.querySelector('.grant-teaser__title p').textContent.trim();
-    const href = article.querySelector('.grant-teaser__title a').href;
-    const output = [...article.querySelectorAll('.grant-teaser__field')]
-                   .map(field => field.textContent.trim())
-                   .filter(text => text.startsWith('Output')).join(' ');
-
-    grants.push({
-        title: title,
-        href: href,
-        deadline: deadline,
-        output: output
-    });
-});
-
-/*
-// Create a container to display the grants
-const grantContainer = document.createElement('div');
-grantContainer.id = 'grant-list';
-document.body.appendChild(grantContainer);
-
-// Display each grant on the browser
-grants.forEach(grant => {
-    const grantElement = document.createElement('div');
-    grantElement.innerHTML = `
-        <h3><a href="${grant.href}">${grant.title}</a></h3>
-        <p><strong>Deadline:</strong> ${grant.deadline}</p>
-        <p><strong>Output:</strong> ${grant.output}</p>
-        <hr>
-    `;
-    grantContainer.appendChild(grantElement);
-});*/
-
+// Function to convert array of objects to CSV format
 function arrayToCSV(arr) {
     const header = Object.keys(arr[0]).join(',');  // Extract headers from the first object
     const rows = arr.map(obj => 
@@ -46,8 +9,31 @@ function arrayToCSV(arr) {
     return [header, ...rows].join('\n');
 }
 
+// Function to extract data from the NEH grants website
+// Specifically targeting articles with class "grant-teaser" to avoid irrelevant articles
+const articles = document.querySelectorAll('article.grant-teaser');
+const grants = [];
 
-// Prompt the user for confirmation
+articles.forEach(article => {
+    const deadline = article.querySelector('.grant-teaser__date').textContent.trim().split(' ').pop();
+    const title = article.querySelector('.grant-teaser__title p').textContent.trim();
+    const href = article.querySelector('.grant-teaser__title a').href;
+
+    // Extract entire "output" value, ensuring it is joined into a single string
+    const output = [...article.querySelectorAll('.grant-teaser__field')]
+        .filter(field => field.textContent.includes('Output')) // Filter for fields that contain 'Output'
+        .map(field => field.textContent.replace('Output: ', '').trim()) // Clean up and extract text
+        .join(', '); // Ensure the entire output is concatenated
+
+    grants.push({
+        title: title,
+        href: href,
+        deadline: deadline,
+        output: output
+    });
+});
+
+// Prompt the user for confirmation and trigger the CSV download
 if (confirm('Do you want to download the CSV file?')) {
     const csvData = arrayToCSV(grants);
     const csvBlob = new Blob([csvData], { type: 'text/csv' });
