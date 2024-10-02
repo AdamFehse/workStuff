@@ -8,30 +8,34 @@
     <style>
         body {
             font-family: Arial, sans-serif;
-            background-color:aliceblue ;
+            background-color:rgb(0, 0, 0) ;
+        }
+        #h2{
+          color: #000dff;
+          text-align: center;
         }
         .node {
             cursor: pointer;
         }
         .node circle {
-            fill: #fff;
-            stroke: rgba(38, 0, 255, 0.438);
-            stroke-width: 3px;
+            fill: #00ccff;
+            stroke: rgb(38, 0, 255);
+            stroke-width: 1px;
         }
-        .node text {
-            padding-left: 1px;
-           font-weight: lighter;
+        .node text {   
+            font-display: 0;
+            /*comments*/  
         }
         .link {
             fill: none;
-            stroke: #5c5c5c;
+            stroke: #422080;
             stroke-width: 3px;
         }
     </style>
 </head>
 <body>
 
-<h2>Grant Tree</h2>
+<h2 id="h2">Grant Tree</h2>
 <svg width="1600" height="1600"></svg>
 
 <script>
@@ -106,14 +110,15 @@ function drawTree(root) {
 
     // Add circles for nodes
     node.append("circle")
-        .attr("r", 2);
+        .attr("r", 3);
 
     // Add text labels for nodes with word wrap
     node.append("text")
-        .attr("dy", 0)
-        .attr("x", d => d.children ? -10 : 10)
+        .attr("dy", .3)
+        .attr("dx", d => d.children ? -4: 4)
         .style("text-anchor", d => d.children ? "end" : "start")
         .style("font-size", "13px")
+        .style("fill", "#ffffff")
         .text(d => d.data.name + (d.data.output ? `: ${d.data.output}` : ''))
         .call(wrapText, 800);  // max width for wrapping text
 }
@@ -126,7 +131,7 @@ function wrapText(text, width) {
         word,
         line = [],
         lineNumber = 0,
-        lineHeight = 1.2,  // Reduced line height to 1.1 to minimize vertical spacing
+        lineHeight = .8,  // Reduced line height to 1.1 to minimize vertical spacing
         y = text.attr("y"),
         dy = parseFloat(text.attr("dy")),
         tspan = text.text(null).append("tspan").attr("x", 2).attr("y", y).attr("dy", dy + "em");
