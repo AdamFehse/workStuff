@@ -8,22 +8,23 @@
     <style>
         body {
             font-family: Arial, sans-serif;
+            background-color:aliceblue ;
         }
         .node {
             cursor: pointer;
         }
         .node circle {
             fill: #fff;
-            stroke: steelblue;
-            stroke-width: 4px;
+            stroke: rgba(38, 0, 255, 0.438);
+            stroke-width: 3px;
         }
         .node text {
-            font: 14px sans-serif;
-            padding-left: 5px;
+            padding-left: 1px;
+           font-weight: lighter;
         }
         .link {
             fill: none;
-            stroke: #ccc;
+            stroke: #5c5c5c;
             stroke-width: 3px;
         }
     </style>
@@ -96,7 +97,7 @@ function drawTree(root) {
       .data(root.descendants())
       .enter().append("g")
         .attr("class", "node")
-        .attr("transform", d => `translate(${d.y},${d.x})`)
+        .attr("transform", d => `translate(${d.y + 14},${d.x})`)
         .on("click", function(event, d) {
           if (d.data.href) {
             window.open(d.data.href, "_blank");
@@ -105,7 +106,7 @@ function drawTree(root) {
 
     // Add circles for nodes
     node.append("circle")
-        .attr("r", 1);
+        .attr("r", 2);
 
     // Add text labels for nodes with word wrap
     node.append("text")
@@ -128,7 +129,7 @@ function wrapText(text, width) {
         lineHeight = 1.2,  // Reduced line height to 1.1 to minimize vertical spacing
         y = text.attr("y"),
         dy = parseFloat(text.attr("dy")),
-        tspan = text.text(null).append("tspan").attr("x", 0).attr("y", y).attr("dy", dy + "em");
+        tspan = text.text(null).append("tspan").attr("x", 2).attr("y", y).attr("dy", dy + "em");
 
     while (word = words.pop()) {
       line.push(word);
