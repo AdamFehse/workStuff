@@ -31,7 +31,7 @@
 <body>
 
 <h2>Grant Tree</h2>
-<svg width="1600" height="1000"></svg>
+<svg width="1600" height="1600"></svg>
 
 <script>
     const csvFiles = ["Challenge Programs.csv", "Digital Humanities.csv", "Education.csv", "FedState Partnership.csv", "Preservation Access.csv",
@@ -65,56 +65,34 @@
       return filename.replace(".csv", "").replace(/-/g, ' ').replace(/_/g, ' ');
     }
 
-    // Function to wrap text
-    function wrapText(text, width) {
-      text.each(function() {
-        var text = d3.select(this),
-            words = text.text().split(/\s+/).reverse(),
-            word,
-            line = [],
-            lineNumber = 0,
-            lineHeight = 1.1, // ems
-            y = text.attr("y"),
-            dy = parseFloat(text.attr("dy")),
-            tspan = text.text(null).append("tspan").attr("x", 0).attr("y", y).attr("dy", dy + "em");
-
-        while (word = words.pop()) {
-          line.push(word);
-          tspan.text(line.join(" "));
-          if (tspan.node().getComputedTextLength() > width) {
-            line.pop();
-            tspan.text(line.join(" "));
-            line = [word];
-            tspan = text.append("tspan").attr("x", 0).attr("y", y).attr("dy", ++lineNumber * lineHeight + dy + "em").text(word);
-          }
-        }
-      });
-    }
-
-    // Function to draw the tree
+// Function to draw the tree
 function drawTree(root) {
     const svg = d3.select("svg"),
           width = +svg.attr("width"),
           height = +svg.attr("height");
 
-    // Increase the node spacing by adjusting the node size
+    // Adjust the size of the tree to provide vertical space
     const treeLayout = d3.tree()
-        .size([height - 100, width - 1300])  // Define the size of the tree
+        .size([height - 100, width - 1300]);
 
     // Assign positions to nodes
     treeLayout(root);
 
+    // Create a group and apply a translation to shift the tree down
+    const g = svg.append("g")
+        .attr("transform", "translate(100, 10)");  // Shift the entire tree right and down
+
     // Create links between nodes
-    svg.selectAll(".link")
+    g.selectAll(".link")
       .data(root.links())
       .enter().append("path")
         .attr("class", "link")
         .attr("d", d3.linkHorizontal()
-            .x(d => d.y)
+            .x(d => d.y + 10)
             .y(d => d.x));
 
     // Create nodes
-    const node = svg.selectAll(".node")
+    const node = g.selectAll(".node")
       .data(root.descendants())
       .enter().append("g")
         .attr("class", "node")
@@ -134,10 +112,37 @@ function drawTree(root) {
         .attr("dy", 0)
         .attr("x", d => d.children ? -10 : 10)
         .style("text-anchor", d => d.children ? "end" : "start")
-        .style("font-size", "14px")  // Set the font size
+        .style("font-size", "13px")
         .text(d => d.data.name + (d.data.output ? `: ${d.data.output}` : ''))
-        .call(wrapText, 700);  // 500 is the max width for wrapping text
+        .call(wrapText, 800);  // max width for wrapping text
 }
+
+// Function to wrap text with controlled line height and avoid excessive space
+function wrapText(text, width) {
+  text.each(function() {
+    var text = d3.select(this),
+        words = text.text().split(/\s+/).reverse(),
+        word,
+        line = [],
+        lineNumber = 0,
+        lineHeight = 1.2,  // Reduced line height to 1.1 to minimize vertical spacing
+        y = text.attr("y"),
+        dy = parseFloat(text.attr("dy")),
+        tspan = text.text(null).append("tspan").attr("x", 0).attr("y", y).attr("dy", dy + "em");
+
+    while (word = words.pop()) {
+      line.push(word);
+      tspan.text(line.join(" "));
+      if (tspan.node().getComputedTextLength() > width) {
+        line.pop();
+        tspan.text(line.join(" "));
+        line = [word];
+        tspan = text.append("tspan").attr("x", 0).attr("y", y).attr("dy", ++lineNumber * lineHeight + dy + "em").text(word);
+      }
+    }
+  });
+}
+
 
 </script>
 
