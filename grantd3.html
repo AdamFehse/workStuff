@@ -96,17 +96,47 @@ function drawTree(root) {
             .x(d => d.y + 10)
             .y(d => d.x));
 
-    // Create nodes
-    const node = g.selectAll(".node")
-      .data(root.descendants())
-      .enter().append("g")
-        .attr("class", "node")
-        .attr("transform", d => `translate(${d.y + 14},${d.x})`)
-        .on("click", function(event, d) {
-          if (d.data.href) {
-            window.open(d.data.href, "_blank");
-          }
-        });
+// Create nodes
+const node = g.selectAll(".node")
+  .data(root.descendants())
+  .enter().append("g")
+    .attr("class", "node")
+    .attr("transform", d => `translate(${d.y + 14},${d.x})`)
+    .on("click", function(event, d) {
+      // Handle root node click
+      if (d.depth === 0) {
+        window.open("https://www.neh.gov/divisions-offices", "_blank");
+      }
+      // Handle division nodes click
+      else if (d.depth === 1) {
+        const divisionLinks = {
+          "Challenge Programs": "https://www.neh.gov/divisions/challenge",
+          "Digital Humanities": "https://www.neh.gov/divisions/odh",
+          "Education": "https://www.neh.gov/divisions/education",
+          "FedState Partnership": "https://www.neh.gov/divisions/fedstate",
+          "Preservation Access": "https://www.neh.gov/divisions/preservation",
+          "Public Programs": "https://www.neh.gov/divisions/public",
+          "Research Programs": "https://www.neh.gov/divisions/research"
+        };
+        const divisionName = d.data.name;
+        if (divisionLinks[divisionName]) {
+          window.open(divisionLinks[divisionName], "_blank");
+        }
+      }
+      // Handle leaf nodes (grants) click
+      else if (d.data.href) {
+        window.open(d.data.href, "_blank");
+      }
+    });
+
+
+  //https://www.neh.gov/divisions/challenge
+  //https://www.neh.gov/divisions/odh
+  //https://www.neh.gov/divisions/education
+  //https://www.neh.gov/divisions/fedstate
+  //https://www.neh.gov/divisions/preservation
+  //https://www.neh.gov/divisions/public
+  //https://www.neh.gov/divisions/research
 
     // Add circles for nodes
     node.append("circle")
