@@ -8,12 +8,28 @@
     <style>
         body {
             font-family: Arial, sans-serif;
-            background-color:rgb(0, 0, 0) ;
+            background-color: aliceblue;
         }
+
         #h2{
-          color: #000dff;
+          color: #000000;
           text-align: center;
         }
+
+        #NEHmain {
+          text-align: center;
+        }
+
+        #NEHmain ul {
+          list-style-position: inside;  /* Align bullets/numbers with text */
+          display: inline-block;        /* Center the list */
+          text-align: left;             /* text is aligned left */
+        }
+
+        #NEHmain li {
+          padding-left: 10px;           /* Adjust for any extra alignment */
+        }
+
         .node {
             cursor: pointer;
         }
@@ -24,20 +40,35 @@
         }
         .node text {   
             font-display: 0;
+            font-weight: 500;
             /*comments*/  
         }
         .link {
             fill: none;
-            stroke: #422080;
+            stroke: #5e5d6148;
             stroke-width: 3px;
         }
     </style>
 </head>
 <body>
 
-<h2 id="h2">Grant Tree</h2>
-<svg width="1600" height="1600"></svg>
 
+<h2 id="h2">Grant Tree</h2>
+
+<div id="NEHmain" href="#">
+  <ul>  
+    <li>
+      1. Search for opportunities using this tree.
+    </li>
+    <li>
+      2. Use this <a href="https://docs.google.com/spreadsheets/d/1igwqjE-VWpsOURBzrD3uvO4IJWkOCA-2Qowi-WxaPEU/edit?usp=sharing">sheet</a> to refine the search based on keywords.
+    </li>
+  </ul>
+  <p style="font-size: 12px; color: gray;">Current as of Oct 1</p>
+</div>
+
+
+<svg width="1600" height="1600"></svg>
 <script>
     const csvFiles = ["Challenge Programs.csv", "Digital Humanities.csv", "Education.csv", "FedState Partnership.csv", "Preservation Access.csv",
       "Public Programs.csv", "Research Programs.csv"
@@ -78,7 +109,8 @@ function drawTree(root) {
 
     // Adjust the size of the tree to provide vertical space
     const treeLayout = d3.tree()
-        .size([height - 100, width - 1300]);
+        .size([height - 100, width - 1300])
+        .separation((a, b) => a.parent == b.parent ? 1 : 1.5); 
 
     // Assign positions to nodes
     treeLayout(root);
@@ -148,7 +180,7 @@ const node = g.selectAll(".node")
         .attr("dx", d => d.children ? -4: 4)
         .style("text-anchor", d => d.children ? "end" : "start")
         .style("font-size", "13px")
-        .style("fill", "#ffffff")
+        .style("fill", "#00000")
         .text(d => d.data.name + (d.data.output ? `: ${d.data.output}` : ''))
         .call(wrapText, 800);  // max width for wrapping text
 }
