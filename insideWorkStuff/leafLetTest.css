@@ -1,0 +1,81 @@
+
+#map {
+    height: 100vh;
+}
+
+.sidebar {
+    position: fixed;
+    top: 10em;
+    left: 0;
+    height: 37vh; /*Height of sidebar*/
+    width: 300px;
+    background-color: #8800d6; /*bg for whole side bar*/
+    padding: 20px;
+    box-shadow: 2px 0px 5px rgba(0, 0, 0, 0.1);
+    z-index: 1000;
+    transition: transform 0.3s ease;
+}
+
+.collapsed {
+    transform: translateX(-300px);
+}
+
+.sidebar-toggle {
+    position: absolute;
+    top: 20px;
+    right: -40px;
+    background-color: #f802f8ef;
+    color: white;
+    padding: 10px;
+    cursor: pointer;
+}
+
+/* Styles for sidebar content */
+.sidebar .top-links {
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 20px;
+}
+
+.sidebar .top-links a {
+    width: 20%;
+    text-align: center;
+    padding: 10px;
+    background-color: #00e1ff;
+    margin-right: 5px;
+    border-radius: 5px;
+    text-decoration: none;
+}
+
+.sidebar .top-links a.active {
+    background-color: #aaa;
+}
+
+/* Hide all pages by default */
+.page {
+    display: none;
+}
+
+/* Show active page */
+.page.active {
+    display: block;
+}
+
+/* Sidebar content area */
+.sidebar .content {
+    display: flex;
+    flex-direction: column;
+    background-color: pink;
+}
+
+.sidebar .content .item {
+    padding: 10px;
+    background-color: #d400ff60; /*content boxes color*/
+    margin-bottom: 10px;
+    cursor: pointer;
+}
+
+.sidebar .content .item:hover {
+    background-color: #1eff00;
+}
+
