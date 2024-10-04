@@ -9,55 +9,96 @@
     <title>Leaflet with Sidebar</title>
 </head>
 <body>
+    
+<!-- Sidebar with categories and content -->
+<div class="sidebar" id="sidebar">
+    <div class="sidebar-toggle" onclick="toggleSidebar()">&#x2190;</div>
+    
+    <!-- Links for different pages -->
+    <div class="top-links">
+        <a href="#" class="active" onclick="showPage('page1', event)">Page 1</a>
+        <a href="#" onclick="showPage('page2', event)">Page 2</a>
+        <a href="#" onclick="showPage('page3', event)">Page 3</a>
+        <a href="#" onclick="showPage('page4', event)">Page 4</a>
+    </div>
+    <p id="dynamic-title">Titles Here</p> 
 
-
-    <!-- Sidebar with categories and content -->
-    <div class="sidebar" id="sidebar">
-        <div class="sidebar-toggle" onclick="toggleSidebar()">&#x2190;</div>
-        
-        <!-- Links for different pages -->
-        <div class="top-links">
-            <a href="#" class="active" onclick="showPage('page1', event)">Page 1</a>
-            <a href="#" onclick="showPage('page2', event)">Page 2</a>
-            <a href="#" onclick="showPage('page3', event)">Page 3</a>
-            <a href="#" onclick="showPage('page4', event)">Page 4</a>
+    <div class="side-content">
+        <!-- Vertical links on the left side -->
+        <div class="side-links">
+            <a href="#" class="active" onclick="showPage('page1', event)">1</a>
+            <a href="#" onclick="showPage('page2', event)">2</a>
+            <a href="#" onclick="showPage('page3', event)">3</a>
+            <a href="#" onclick="showPage('page4', event)">4</a>
+            <a href="#" onclick="showPage('page4', event)">5</a>
         </div>
 
-        <!-- Content area -->
+
         <div class="content">
             <!-- Page 1 content -->
             <div id="page1" class="page active">
-                <div class="item" onclick="goToLocation(32.2226, -110.9747)">Go to Location TUC</div>
-                <div class="item" onclick="goToLocation(40.730610, -73.935242)">Go to Location NY</div>
-                <div class="item" onclick="goToLocation(24, -103)">Go to Location MEX</div>
-                <div class="item" onclick="goToLocation(-24.846565, 133.59375)">Go to Location AUS</div>
-                <div class="item" onclick="goToLocation(59.400365, 24.741211)">Go to Location Tallinn</div>
+                <div class="item" onclick="goToLocation(32.2226, -110.9747)">
+                    <img src="/insideWorkStuff/Wilma1.jpg" alt="TUC Image">
+                    <div class="text">
+                        <div class="title">Go to Location TUC</div>
+                        <div class="context">Explore the beautiful Tucson area.</div>
+                    </div>
+                </div>
+                <div class="item" onclick="goToLocation(40.730610, -73.935242)">
+                    <img src="/insideWorkStuff/Wilma1.jpg" alt="NY Image">
+                    <div class="text">
+                        <div class="title">Go to Location NY</div>
+                        <div class="context">Discover the hustle and bustle of New York City.</div>
+                    </div>
+                </div>
+                <div class="item" onclick="goToLocation(24, -103)">
+                    <img src="/insideWorkStuff/Wilma1.jpg" alt="MEX Image">
+                    <div class="text">
+                        <div class="title">Go to Location MEX</div>
+                        <div class="context">Visit the vibrant culture of Mexico.</div>
+                    </div>
+                </div>
+                <div class="item" onclick="goToLocation(-24.846565, 133.59375)">
+                    <img src="/insideWorkStuff/Wilma1.jpg" alt="AUS Image">
+                    <div class="text">
+                        <div class="title">Go to Location AUS</div>
+                        <div class="context">Experience the natural wonders of Australia.</div>
+                    </div>
+                </div>
+                <div class="item" onclick="goToLocation(59.400365, 24.741211)">
+                    <img src="/insideWorkStuff/Wilma1.jpg" alt="Tallinn Image">
+                    <div class="text">
+                        <div class="title">Go to Location Tallinn</div>
+                        <div class="context">Explore the medieval charm of Tallinn.</div>
+                    </div>
+                </div>
             </div>
-
+        
             <!-- Page 2 content -->
             <div id="page2" class="page">
                 <p>Page 2 Content Here. More links or content.</p>
             </div>
-
+        
             <!-- Page 3 content -->
             <div id="page3" class="page">
                 <p>Page 3 Content Here. Additional links or content.</p>
             </div>
-
+        
             <!-- Page 4 content -->
             <div id="page4" class="page">
                 <p>Page 4 Content Here. Even more links or content.</p>
             </div>
         </div>
     </div>
+</div>
 
-    <!-- Map container -->
-    <div id="map"></div>
+<!-- Map container -->
+<div id="map"></div>
 
-    <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"
-            integrity="sha256-20nQCchB9co0qIjJZRGuk2/Z9VM+kNiyxNV1lvTlZBo=" crossorigin=""></script>
-    <script src="leaflet.js"></script>
-    <script src="leafLefttest.js"></script>
+<script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"
+        integrity="sha256-20nQCchB9co0qIjJZRGuk2/Z9VM+kNiyxNV1lvTlZBo=" crossorigin=""></script>
+<script src="leaflet.js"></script>
+<script src="leafLefttest.js"></script>
 
 </body>
 </html>

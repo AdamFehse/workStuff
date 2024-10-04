@@ -5,26 +5,34 @@
 
 .sidebar {
     position: fixed;
-    top: 10em;
+    top: 7em;
     left: 0;
-    height: 37vh; /*Height of sidebar*/
-    width: 300px;
-    background-color: #8800d6; /*bg for whole side bar*/
+    border-radius: 5%;
+    height: 60vh; /* Height of sidebar */
+    width: 22em; /* Width of sidebar */
+    background-color: #540c84ec; /* Background color for the whole sidebar */
     padding: 20px;
     box-shadow: 2px 0px 5px rgba(0, 0, 0, 0.1);
     z-index: 1000;
     transition: transform 0.3s ease;
+    display: flex; /* Use flexbox for layout */
+    flex-direction: column; /* Stack items vertically */
+}
+
+/* Sidebar content area */
+.sidebar .side-content {
+    display: flex; /* Flexbox for side links and content */
 }
 
 .collapsed {
-    transform: translateX(-300px);
+    transform: translateX(-24em);
 }
 
 .sidebar-toggle {
     position: absolute;
     top: 20px;
     right: -40px;
-    background-color: #f802f8ef;
+    background-color: #b10fb1c4;
     color: white;
     padding: 10px;
     cursor: pointer;
@@ -34,7 +42,6 @@
 .sidebar .top-links {
     display: flex;
     justify-content: space-between;
-    margin-bottom: 20px;
 }
 
 .sidebar .top-links a {
@@ -44,11 +51,37 @@
     background-color: #00e1ff;
     margin-right: 5px;
     border-radius: 5px;
-    text-decoration: none;
 }
+
+/* Styles for the vertical side links */
+.sidebar .side-links {
+    margin-top: 1em; /* moves everything up or down */
+    display: flex;
+    flex-direction: column; /* Arrange links in a column */
+    align-items: flex-start; /* Align items to the left */
+    margin-right: .5em; /* Space between vertical links and content */
+}
+.sidebar .side-links a {
+    display: flex; /* Use Flexbox for centering */
+    justify-content: center; /* Center horizontally */
+    align-items: center; /* Center vertically */
+    width: 40px; /* Width for small buttons */
+    height: 40px; /* Height for small buttons */
+    padding: 0; /* Remove padding for icon-sized buttons */
+    background-color: #00e1ff; /* Background color for links */
+    border-radius: 100%; /* Make buttons circular */
+    text-decoration: none; /* No underline */
+    color: black; /* Text color */
+    margin-bottom: 2em; /* Space between buttons */
+}
+
 
 .sidebar .top-links a.active {
     background-color: #aaa;
+}
+
+.sidebar .side-links a:hover {
+    background-color: #1eff00; /* Hover effect */
 }
 
 /* Hide all pages by default */
@@ -61,21 +94,71 @@
     display: block;
 }
 
-/* Sidebar content area */
+/* Styles for sidebar items */
+/*control content area*/
 .sidebar .content {
+    margin-top: 0; /* move everything up/down */
     display: flex;
+    padding-top: 0em;
+    align-items: center;
     flex-direction: column;
-    background-color: pink;
+    background-color: rgba(43, 1, 92, 0.447); /* bg of link area */
+    flex-grow: 1; /* Allow content area to take remaining space */
+    border-radius: 10%;
+    height: 100%; /* Set a fixed height or a percentage based on your layout */
+    max-height: 50vh; /* Set a maximum height to enable scrolling */
+    overflow-y: auto; /* Enable vertical scrolling */
 }
 
+/* Control content links */
 .sidebar .content .item {
-    padding: 10px;
-    background-color: #d400ff60; /*content boxes color*/
-    margin-bottom: 10px;
+    display: flex; /* Use flexbox to align items */
+    align-items: center; /* Center items vertically */
+    padding: 1.2em; /* Increased padding for larger boxes */
+    background-color: #0107a1c1; /* Content boxes color */
+    margin-bottom: 1em; /*  space between boxes */
+    border-radius: 8px; /*  rounded corners */
     cursor: pointer;
+    transition: background-color 0.3s; /* Smooth hover effect */
 }
 
 .sidebar .content .item:hover {
     background-color: #1eff00;
 }
 
+/* Image style */
+.sidebar .content .item img {
+    width: 60px; /* Fixed width for images */
+    height: 60px; /* Fixed height for images */
+    border-radius: 50%; /* Make images circular */
+    margin-right: 15px; /* Space between image and text */
+}
+
+/* Title style */
+.sidebar .content .item .title {
+    font-size: 16px; /* Increase font size */
+    font-weight: bold; /* Make title bold */
+    color: #fff; /* White text color */
+}
+
+/* Context style */
+.sidebar .content .item .context {
+    font-size: 14px; /* Slightly smaller font for context */
+    color: #e0e0e0; /* Light gray for context text */
+    margin-top: 5px; /* Space above context text */
+}
+
+#dynamic-title {
+    text-align: left; 
+    font-size: x-large;
+    color: white;
+    margin-left: 2em;
+    margin-top: .5em; /* Remove default margin */
+    margin-bottom: 0;
+    padding: 5px 0; /* Reduced padding for spacing */
+    background-color: #f5f5f500; /* Light background color for contrast */
+    position: sticky; /* Fixes the title in place */
+    top: 0; /* Sticks to the top of the content area */
+    z-index: 1001; /* Ensure it's above the content area */
+    height: auto; /* Allow height to adjust based on content */
+}

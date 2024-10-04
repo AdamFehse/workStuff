@@ -37,42 +37,42 @@ function onMapClick(e) {
     map.on('click', onMapClick);
 
 
-    // Function to toggle the sidebar visibility
-    function toggleSidebar() {
-        var sidebar = document.getElementById('sidebar');
-        if (sidebar.classList.contains('collapsed')) {
-            sidebar.classList.remove('collapsed');
-        } else {
-            sidebar.classList.add('collapsed');
-        }
+// Function to toggle the sidebar visibility
+function toggleSidebar() {
+    var sidebar = document.getElementById('sidebar');
+    if (sidebar.classList.contains('collapsed')) {
+        sidebar.classList.remove('collapsed');
+    } else {
+        sidebar.classList.add('collapsed');
     }
+}
 
-    // Function to show the specific page content and update active link styling
-    function showPage(pageId, event) {
-        event.preventDefault(); // Prevent the default anchor link behavior
+// Function to show the specific page content and update active link styling
+function showPage(pageId, event) {
+    event.preventDefault(); // Prevent the default anchor link behavior
 
-        // Hide all pages
-        var pages = document.querySelectorAll('.page');
-        pages.forEach(function(page) {
-            page.classList.remove('active');
-        });
+    // Hide all pages
+    var pages = document.querySelectorAll('.page');
+    pages.forEach(function(page) {
+        page.classList.remove('active');
+    });
 
-        // Show the selected page
-        var selectedPage = document.getElementById(pageId);
-        selectedPage.classList.add('active');
+    // Show the selected page
+    var selectedPage = document.getElementById(pageId);
+    selectedPage.classList.add('active');
 
-        // Remove 'active' class from all links
-        var links = document.querySelectorAll('.top-links a');
-        links.forEach(function(link) {
-            link.classList.remove('active');
-        });
+    // Remove 'active' class from all links
+    var links = document.querySelectorAll('.top-links a');
+    links.forEach(function(link) {
+        link.classList.remove('active');
+    });
 
-        // Add 'active' class to the clicked link
-        event.target.classList.add('active');
-    }
+    // Add 'active' class to the clicked link
+    event.target.classList.add('active');
+}
 
-    // Go to specific location on the map when a sidebar item is clicked
-    function goToLocation(lat, lng) {
-        map.setView([lat, lng], 7);
-    }
+// Go to specific location on the map when a sidebar item is clicked
+function goToLocation(lat, lng) {
+    map.setView([lat, lng], 7);
+}
 
