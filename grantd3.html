@@ -8,11 +8,15 @@
     <style>
         body {
             font-family: Arial, sans-serif;
-            background-color: aliceblue;
+            background-color: rgb(33, 25, 1);
+        }
+        #link{
+          color: #c300ff;
+          font-weight: 700;
         }
 
         #h2{
-          color: #000000;
+          color: #ffffff;
           text-align: center;
         }
 
@@ -21,6 +25,7 @@
         }
 
         #NEHmain ul {
+          color: #ffffff;
           list-style-position: inside;  /* Align bullets/numbers with text */
           display: inline-block;        /* Center the list */
           text-align: left;             /* text is aligned left */
@@ -61,7 +66,7 @@
       1. Search for opportunities using this tree.
     </li>
     <li>
-      2. Use this <a href="https://docs.google.com/spreadsheets/d/1igwqjE-VWpsOURBzrD3uvO4IJWkOCA-2Qowi-WxaPEU/edit?usp=sharing">sheet</a> to refine the search based on keywords.
+      2. Use this <a id="link" href="https://docs.google.com/spreadsheets/d/1igwqjE-VWpsOURBzrD3uvO4IJWkOCA-2Qowi-WxaPEU/edit?usp=sharing">sheet</a> to refine the search based on keywords.
     </li>
   </ul>
   <p style="font-size: 12px; color: gray;">Current as of Oct 1</p>
@@ -180,7 +185,7 @@ const node = g.selectAll(".node")
         .attr("dx", d => d.children ? -4: 4)
         .style("text-anchor", d => d.children ? "end" : "start")
         .style("font-size", "13px")
-        .style("fill", "#00000")
+        .style("fill", d => d.data.color || "lightgrey")
         .text(d => d.data.name + (d.data.output ? `: ${d.data.output}` : ''))
         .call(wrapText, 800);  // max width for wrapping text
 }
