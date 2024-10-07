@@ -5,7 +5,7 @@ L.tileLayer('https://tile.openstreetmap.org/{z}/{x}/{y}.png', {
     attribution: '&copy; <a href="http://www.openstreetmap.org/copyright">OpenStreetMap</a>'
 }).addTo(map);
 
-
+/** 
 // Load the global TopoJSON data for countries
 $.getJSON('countries-50m.json', function (topoData) { 
     // Convert TopoJSON to GeoJSON and add it to the map
@@ -20,6 +20,7 @@ $.getJSON('countries-50m.json', function (topoData) {
         }
     }).addTo(map); 
 });
+*/
 
     // Fetch the GeoJSON file and add it to the map
     fetch('overPassTucson.geojson')
