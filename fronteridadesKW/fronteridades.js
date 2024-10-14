@@ -1,73 +1,89 @@
-// Function to extract all text content from project cards in the HTML
+// Function to extract title, description, and text content from each project card
 function extractTextFromProjects() {
     const projectCards = document.querySelectorAll('.card');
-    let allText = '';
+    let projectsData = [];
 
     projectCards.forEach(card => {
         const title = card.querySelector('.card-title').innerText.trim();
         const description = card.querySelector('.card-text').innerText.trim();
-        
-        // Combine title and description for keyword analysis
-        allText += ' ' + title + ' ' + description;
+        const fullText = title + ' ' + description;
+
+        // Store each project with its title and text content
+        projectsData.push({ title, fullText });
     });
 
-    return allText;
+    return projectsData;
 }
 
 // Function to clean text, remove common stopwords, and generate a keyword list
 function generateKeywordList(text) {
-    // Convert text to lowercase and remove punctuation
     const cleanedText = text.toLowerCase().replace(/[^\w\s]/g, '');
-
-    // Split text into words
     const words = cleanedText.split(/\s+/);
 
-    // Common English stopwords to ignore
-    const stopwords = ['the', 'and', 'in', 'of', 'to', 'a', 'with', 'for', 'on', 'is', 'by', 'an', 'it', 'as'];
-
-    // Create an object to store word frequencies
+    const stopwords = ['the', 'and', 'in', 'of', 'to', 'a', 'with', 'for', 'on', 'is', 'by', 'an', 'it', 'as',
+        'are'
+    ];
     const wordFrequency = {};
 
     words.forEach(word => {
         if (!stopwords.includes(word) && word.length > 2) {
-            if (wordFrequency[word]) {
-                wordFrequency[word]++;
-            } else {
-                wordFrequency[word] = 1;
-            }
+            wordFrequency[word] = (wordFrequency[word] || 0) + 1;
         }
     });
 
-    // Convert frequency object to an array of [word, count] pairs, sorted by count
     const sortedKeywords = Object.entries(wordFrequency).sort((a, b) => b[1] - a[1]);
-
     return sortedKeywords;
 }
 
-// Function to print the keyword list to the page
-function printKeywordList(keywordList) {
-    const keywordDiv = document.getElementById('keyword-list');
-    
-    // Clear any existing content
-    keywordDiv.innerHTML = '';
+// Function to create a bar chart using Chart.js
+function createBarChart(projectTitle, keywordList, canvasId) {
+    const ctx = document.getElementById(canvasId).getContext('2d');
+    const labels = keywordList.map(([word]) => word);
+    const data = keywordList.map(([, count]) => count);
 
-    // Create a list element
-    const ul = document.createElement('ul');
-
-    // Loop through the keyword list and add each keyword to the list
-    keywordList.forEach(([word, count]) => {
-        const li = document.createElement('li');
-        li.textContent = `${word}: ${count}`;
-        ul.appendChild(li);
+    new Chart(ctx, {
+        type: 'bar',
+        data: {
+            labels: labels,
+            datasets: [{
+                label: `Keyword Frequency for "${projectTitle}"`,
+                data: data,
+                backgroundColor: 'rgba(75, 192, 192, 0.2)',
+                borderColor: 'rgba(75, 192, 192, 1)',
+                borderWidth: 1
+            }]
+        },
+        options: {
+            scales: {
+                y: {
+                    beginAtZero: true
+                }
+            }
+        }
     });
-
-    // Append the list to the keyword div
-    keywordDiv.appendChild(ul);
 }
 
-// After DOM is loaded, extract text, generate keyword list, and print it
+// Function to generate and display charts for each project
+function printChartsForProjects(projectsData) {
+    const chartsContainer = document.getElementById('charts-container');
+    chartsContainer.innerHTML = ''; // Clear any existing charts
+
+    projectsData.forEach((project, index) => {
+        const keywordList = generateKeywordList(project.fullText);
+
+        // Create a canvas for each project chart
+        const canvasId = `chart-${index}`;
+        const canvas = document.createElement('canvas');
+        canvas.id = canvasId;
+        chartsContainer.appendChild(canvas);
+
+        // Generate a chart for the project
+        createBarChart(project.title, keywordList, canvasId);
+    });
+}
+
+// After DOM is loaded, extract text, generate keyword list, and display charts
 document.addEventListener('DOMContentLoaded', () => {
-    const allProjectText = extractTextFromProjects();
-    const keywordList = generateKeywordList(allProjectText);
-    printKeywordList(keywordList);
+    const projectsData = extractTextFromProjects();
+    printChartsForProjects(projectsData);
 });
