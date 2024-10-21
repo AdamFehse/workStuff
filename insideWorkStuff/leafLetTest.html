@@ -7,88 +7,19 @@
           integrity="sha256-p4NxAoJBhIIN+hmNHrzRCf9tD/miZyoHS5obTRR9BMY=" crossorigin=""/>
      <!-- Make sure you put this AFTER Leaflet's CSS -->
     <link rel="stylesheet" href="leafLetTest.css">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css">
     <title>Leaflet with Sidebar</title>
 </head>
 <body>
-    
+
 <!-- Sidebar with categories and content -->
 <div class="sidebar" id="sidebar">
-    <div class="sidebar-toggle" onclick="toggleSidebar()">&#x2190;</div>
-    
-    <!-- Links for different pages -->
-    <div class="top-links">
-        <a href="#" class="active" onclick="showPage('page1', event)">Art Based Projects</a>
-        <a href="#" onclick="showPage('page2', event)">Research Projects</a>
-        <a href="#" onclick="showPage('page3', event)">Education & Community Outreach Projects</a>
-        <a href="#" onclick="showPage('page4', event)">Search By Keywords</a>
-    </div>
-    <p id="dynamic-title">Titles Here</p> 
-
-    <div class="side-content">
-        <!-- Vertical links on the left side -->
-        <div class="side-links">
-            <a href="#" class="active" onclick="showPage('page1', event)">1</a>
-            <a href="#" onclick="showPage('page2', event)">2</a>
-            <a href="#" onclick="showPage('page3', event)">3</a>
-            <a href="#" onclick="showPage('page4', event)">4</a>
-            <a href="#" onclick="showPage('page4', event)">5</a>
-        </div>
-
-
-        <div class="content">
-            <!-- Page 1 content -->
-            <div id="page1" class="page active">
-                <div class="item" onclick="goToLocation(32.2226, -110.9747)">
-                    <img src="/insideWorkStuff/Wilma1.jpg" alt="TUC Image">
-                    <div class="text">
-                        <div class="title">Go to Location TUC</div>
-                        <div class="context">Explore the beautiful Tucson area.</div>
-                    </div>
-                </div>
-                <div class="item" onclick="goToLocation(40.730610, -73.935242)">
-                    <img src="/insideWorkStuff/Wilma1.jpg" alt="NY Image">
-                    <div class="text">
-                        <div class="title">Go to Location NY</div>
-                        <div class="context">Discover the hustle and bustle of New York City.</div>
-                    </div>
-                </div>
-                <div class="item" onclick="goToLocation(24, -103)">
-                    <img src="/insideWorkStuff/Wilma1.jpg" alt="MEX Image">
-                    <div class="text">
-                        <div class="title">Go to Location MEX</div>
-                        <div class="context">Visit the vibrant culture of Mexico.</div>
-                    </div>
-                </div>
-                <div class="item" onclick="goToLocation(-24.846565, 133.59375)">
-                    <img src="/insideWorkStuff/Wilma1.jpg" alt="AUS Image">
-                    <div class="text">
-                        <div class="title">Go to Location AUS</div>
-                        <div class="context">Experience the natural wonders of Australia.</div>
-                    </div>
-                </div>
-                <div class="item" onclick="goToLocation(59.400365, 24.741211)">
-                    <img src="/insideWorkStuff/Wilma1.jpg" alt="Tallinn Image">
-                    <div class="text">
-                        <div class="title">Go to Location Tallinn</div>
-                        <div class="context">Explore the medieval charm of Tallinn.</div>
-                    </div>
-                </div>
-            </div>
-        
-            <!-- Page 2 content -->
-            <div id="page2" class="page">
-                <p>Page 2 Content Here. More links or content.</p>
-            </div>
-        
-            <!-- Page 3 content -->
-            <div id="page3" class="page">
-                <p>Page 3 Content Here. Additional links or content.</p>
-            </div>
-        
-            <!-- Page 4 content -->
-            <div id="page4" class="page">
-                <p>Page 4 Content Here. Even more links or content.</p>
-            </div>
+    <div class="container">
+        <div class="row">
+            <div class="col-3">Art Related Projects</div>
+            <div class="col-3">Research Projects</div>
+            <div class="col-4">Education & <br> Community <br> Outreach Projects</div>
+            <div class="col-2">Search By Keyword</div>
         </div>
     </div>
 </div>
@@ -96,6 +27,7 @@
 <!-- Map container -->
 <div id="map"></div>
 
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
 <script
   src="https://code.jquery.com/jquery-3.7.1.js"
   integrity="sha256-eKhayi8LEQwp4NKxN+CfCh+3qOVUtJn3QNZ0TciWLP4="
