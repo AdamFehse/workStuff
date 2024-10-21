@@ -6,11 +6,11 @@
 .sidebar {
     position: fixed;
     top: 7em;
-    left: 0;
-    border-radius: 5%;
+    right: 0;
+    border-radius: 0%;
     height: 60vh; /* Height of sidebar */
     width: 22em; /* Width of sidebar */
-    background-color: #540c84ec; /* Background color for the whole sidebar */
+    background-color: #7a7a7aec; /* Background color for the whole sidebar */
     padding: 20px;
     box-shadow: 2px 0px 5px rgba(0, 0, 0, 0.1);
     z-index: 1000;
@@ -45,12 +45,10 @@
 }
 
 .sidebar .top-links a {
-    width: 20%;
     text-align: center;
-    padding: 10px;
     background-color: #00e1ff;
     margin-right: 5px;
-    border-radius: 5px;
+    border-radius: 0px;
 }
 
 /* Styles for the vertical side links */
@@ -68,10 +66,10 @@
     width: 40px; /* Width for small buttons */
     height: 40px; /* Height for small buttons */
     padding: 0; /* Remove padding for icon-sized buttons */
-    background-color: #00e1ff; /* Background color for links */
-    border-radius: 100%; /* Make buttons circular */
+    background-color: #464646; /* Background color for links */
+    border-radius: 0%; /* Make buttons circular */
     text-decoration: none; /* No underline */
-    color: black; /* Text color */
+    color: rgb(255, 255, 255); /* Text color */
     margin-bottom: 2em; /* Space between buttons */
 }
 
@@ -104,7 +102,7 @@
     flex-direction: column;
     background-color: rgba(43, 1, 92, 0.447); /* bg of link area */
     flex-grow: 1; /* Allow content area to take remaining space */
-    border-radius: 10%;
+    border-radius: 0%;
     height: 100%; /* Set a fixed height or a percentage based on your layout */
     max-height: 50vh; /* Set a maximum height to enable scrolling */
     overflow-y: auto; /* Enable vertical scrolling */
@@ -114,10 +112,10 @@
 .sidebar .content .item {
     display: flex; /* Use flexbox to align items */
     align-items: center; /* Center items vertically */
-    padding: 1.2em; /* Increased padding for larger boxes */
+    padding: .5 em; /* Increased padding for larger boxes */
     background-color: #0107a1c1; /* Content boxes color */
     margin-bottom: 1em; /*  space between boxes */
-    border-radius: 8px; /*  rounded corners */
+    border-radius: 0px; /*  rounded corners */
     cursor: pointer;
     transition: background-color 0.3s; /* Smooth hover effect */
 }
@@ -130,8 +128,8 @@
 .sidebar .content .item img {
     width: 60px; /* Fixed width for images */
     height: 60px; /* Fixed height for images */
-    border-radius: 50%; /* Make images circular */
-    margin-right: 15px; /* Space between image and text */
+    border-radius: 0%; /* Make images circular */
+    margin: .2em; /* Space between image and text */
 }
 
 /* Title style */
