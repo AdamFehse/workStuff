@@ -1,13 +1,18 @@
 #offcanvasExample{
   height: 70vh;
-  background-color: rgb(72, 255, 0);
   width: 35em;
   top: 10em;
 }
 
-/* Optional for custom font size and additional control over borders */
-.offcanvas-header .row .col {
-  font-size: 1.25rem; /* Customize font size if needed */
-  border: 2px solid #ccc; /* Adjust border thickness and color */
+#ArtBasedProjects{
+  background-color: #0d6785;
+  color: white;
 }
 
+#xHeader {
+  padding: 0;
+}
+
+#offBod{
+  padding: 8px;
+}
