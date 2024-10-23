@@ -1,5 +1,5 @@
-.scroll-section {
-    max-height: 100px;
-    overflow-y: auto;
-    margin-right: 10px;
-  }
+#offcanvasExample{
+  height: 70vh;
+  background-color: aqua;
+  top: 10em;
+}
