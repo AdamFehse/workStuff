@@ -1,18 +1,18 @@
-#offcanvasExample{
-  height: 70vh;
-  width: 35em;
-  top: 10em;
+.offcanvas-btn {
+  right: 642px;
+  visibility: visible;
 }
 
-#ArtBasedProjects{
-  background-color: #0d6785;
-  color: white;
+/* optional junk to toggle the button text */
+.offcanvas-btn span:last-child,
+.offcanvas.show .offcanvas-btn span:first-child {
+  display: none;
 }
 
-#xHeader {
-  padding: 0;
+.offcanvas.show .offcanvas-btn span:last-child {
+  display: inline;
 }
 
-#offBod{
-  padding: 8px;
+#side{
+  width: 33.5%;
 }
