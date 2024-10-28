@@ -1,5 +1,5 @@
 .offcanvas-btn {
-  right: 642px;
+  left: -4.2rem;
   visibility: visible;
 }
 
@@ -13,6 +13,41 @@
   display: inline;
 }
 
-#side{
+#side {
   width: 33.5%;
+}
+
+#map {
+  height: 100vh;
+}
+
+
+/* Use margin-top: auto to push contentContainer to the bottom */
+#contentContainer {
+  margin-top: auto;
+}
+
+#categories {
+  height: 15rem;
+  overflow-y: scroll;
+  overflow-x: hidden;
+  scrollbar-width: thin;
+}
+
+
+#glow {
+  font-size: 3rem;
+  color: #ffffff;
+  text-align: center;
+  animation: glow 1.5s ease-in-out infinite alternate;
+}
+
+@-webkit-keyframes glow {
+  from {
+    text-shadow: 0 0 10px #fff, 0 0 20px #00e1ff, 0 0 30px #54e600, 0 0 40px #ffffff, 0 0 50px #e60000, 0 0 60px #2300e6, 0 0 70px #e60073;
+  }
+
+  to {
+    text-shadow: 0 0 20px #fff, 0 0 30px #c1ff4d, 0 0 40px #77ff4d, 0 0 50px #ff4da6, 0 0 60px #241986, 0 0 70px #ff4d4d, 0 0 80px #ff4d4d;
+  }
 }
