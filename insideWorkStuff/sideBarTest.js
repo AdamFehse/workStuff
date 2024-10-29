@@ -10,16 +10,18 @@ document.addEventListener('DOMContentLoaded', () => {
                 skipEmptyLines: true,
                 complete: (results) => {
                     projectData = results.data; // Store parsed data
+                    addMarkersToMap(projectData); // Add markers after parsing
                 }
             });
         });
 });
 
+
 function showContent(category, keyword = '') {
     const contentDiv = document.getElementById('mainContent');
-    
+
     const filteredProjects = projectData.filter(project =>
-        project['Project Category'] === category && 
+        project['Project Category'] === category &&
         (keyword === '' || project['Project Type'] === keyword)
     );
 
@@ -41,7 +43,7 @@ function showContent(category, keyword = '') {
             <tr>
                 <td class="image-cell">
                     <div class="image-placeholder">
-                        <img src="https://via.placeholder.com/100" alt="Project Image">
+                    <img src="${project['ImageUrl'] || 'https://via.placeholder.com/100'}" alt="Project Image">
                     </div>
                 </td>
                 <td>${project['Project Name']}</td>
@@ -56,4 +58,21 @@ function showContent(category, keyword = '') {
     `;
 
     contentDiv.innerHTML = filteredProjects.length ? tableHTML : `<p class="text-center">No projects found for ${category}${keyword ? ' - ' + keyword : ''}.</p>`;
+}
+
+function addMarkersToMap(data) {
+    data.forEach(row => {
+        const lat = parseFloat(row.Latitude);
+        const lng = parseFloat(row.Longitude);
+
+        if (!isNaN(lat) && !isNaN(lng)) {
+            const marker = L.marker([lat, lng]).addTo(map);
+            marker.bindPopup(`
+                <strong>Project Name:</strong> ${row['Project Name'] || 'N/A'}<br>
+                <strong>Category:</strong> ${row['Project Category'] || 'N/A'}<br>
+                <strong>Description:</strong> ${row['Description'] || 'No description available.'}<br>
+                <img src="${row['ImageUrl'] || 'https://via.placeholder.com/100'}" alt="Project Image" style="width:100px;">
+            `);
+        }
+    });
 }
