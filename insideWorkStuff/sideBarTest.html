@@ -14,23 +14,24 @@
 <body>
 
     <!-- Offcanvas Sidebar -->
-    <div class="offcanvas offcanvas-end show" id="side">
+    <div class="offcanvas offcanvas-end show bg-dark" id="side">
         <button class="btn btn-primary offcanvas-btn position-absolute mt-2" type="button" data-bs-toggle="offcanvas"
             data-bs-target="#side">
             <span>Open</span><span>Close</span>
         </button>
 
         <!-- Title/Header of sidebar -->
-        <div class="offcanvas-header justify-content-center bg-dark p-0">
+        <div class="offcanvas-header justify-content-center bg-primary p-1">
             <h1 class="offcanvas-title" id="glow">Story Map</h1>
         </div>
 
-        <div class="offcanvas-body d-flex flex-column">
+        <div class="offcanvas-body d-flex flex-column bg-light">
 
                 <div class="row">
                     <!-- Art-Based Projects Column -->
                     <div class="col px-1" id="categories">
-                        <h6 class="bg-primary text-white p-2 text-center border border-3">Art-Based <br> Projects</h6>
+                        <h6 class="bg-primary text-white p-2 text-center border border-3" role="button"
+                        onclick="showContent('Art-Based Projects', '')" >Art-Based <br> Projects</h6>
                         <ul class="list-group m-0 p-0 list-group-flush fw-bold">
                             <li class="list-group-item list-group-item-dark list-group-item-action" role="button"
                                 onclick="showContent('Art-Based Projects', 'Collective Art')">
@@ -86,8 +87,8 @@
                         </ul>
                     </div>
                     <!-- Education and Community Outreach Projects Column -->
-                    <div class="col-4 px-1" id="categories" style="overflow-y: hidden;" >
-                        <h6 class="bg-primary text-white p-2 text-center border border-3">Education & Community Outreach</h6>
+                    <div class="col px-1" id="categories" style="overflow-y:hidden;"  >
+                        <h6 class="bg-primary text-white p-2 text-center border border-3">Education and Outreach</h6>
                         <ul class="list-group list-group-flush fw-bold">
                             <li class="list-group-item list-group-item-dark list-group-item-action" role="button"
                                 onclick="showContent('Education & Community Outreach', 'Speaker Series')">Speaker Series</li>
@@ -115,7 +116,7 @@
                 <div class="container mt-4 border container d-flex flex-grow-1 align-items-center justify-content-center border" id="contentContainer">
                     <div class="row ">
                         <div class="col-12 ">
-                            <div class="p-5" id="mainContent">
+                            <div id="mainContent">
                                 <!-- Dynamic content will be shown here -->
                                 <h3 class="text-center">Content Area</h3>
                                 <p class="text-center">Click a keyword to display relevant content here.</p>
@@ -140,6 +141,7 @@
     <script src="sideBarTest.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/PapaParse/5.4.1/papaparse.js"></script>
 </body>
 
 </html>
