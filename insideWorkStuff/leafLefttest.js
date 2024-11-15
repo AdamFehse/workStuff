@@ -1,29 +1,12 @@
-var map = L.map('map').setView([32.216868, -110.974298], 9);
+map = L.map('map').setView([32.216868, -110.974298], 9);
 
 L.tileLayer('https://tile.openstreetmap.org/{z}/{x}/{y}.png', {
     maxZoom: 20,
     attribution: '&copy; <a href="http://www.openstreetmap.org/copyright">OpenStreetMap</a>'
 }).addTo(map);
 
-/** 
-// Load the global TopoJSON data for countries
-$.getJSON('countries-50m.json', function (topoData) { 
-    // Convert TopoJSON to GeoJSON and add it to the map
-    L.geoJson(topojson.feature(topoData, topoData.objects.countries), {
-        style: function (feature) { 
-            return {
-                'weight': 1,
-                'color': 'orange',       // Border color for countries
-                'fillColor': 'white',  // Dynamic fill color for countries
-                'fillOpacity': 0     // Fill opacity for countries
-            };
-        }
-    }).addTo(map); 
-});
-*/
-
-    // Fetch the GeoJSON file and add it to the map
-    fetch('overPassTucson.geojson')
+// Fetch the GeoJSON file and add it to the map
+fetch('overPassTucson.geojson')
     .then(response => response.json())
     .then(data => {
         // Add the GeoJSON layer to the map
@@ -55,7 +38,7 @@ $.getJSON('countries-50m.json', function (topoData) {
                         popupContent += `<strong>Alternate Name:</strong> ${feature.properties.alt_name}<br>`;
                     }
 
-                    
+
                     layer.bindPopup(popupContent);
                 }
             }
@@ -63,19 +46,30 @@ $.getJSON('countries-50m.json', function (topoData) {
     });
 
 
-        /* 
-                    const locations = [
-                { name: "Downtown Tucson", lat: 32.2217, lng: -110.9265 },
-                { name: "University of Arizona", lat: 32.2319, lng: -110.9501 },
-                { name: "Sabino Canyon", lat: 32.3091, lng: -110.8182 }
-            ];
-            
-            locations.forEach(location => {
-                const marker = L.marker([location.lat, location.lng]).addTo(map);
-                marker.bindPopup(location.name);
-            });
+ //  hard code locations
+/**
+ *function onMapClick(e) {
+    alert("You clicked the map at " + e.latlng);
+}
 
-    
+map.on('click', onMapClick);
+
+
+ * 
+ *  
+ const locations = [
+    { name: "Downtown Tucson", lat: 32.2217, lng: -110.9265 },
+    { name: "University of Arizona", lat: 32.2319, lng: -110.9501 },
+    { name: "Sabino Canyon", lat: 32.3091, lng: -110.8182 }
+];
+
+locations.forEach(location => {
+    const marker = L.marker([location.lat, location.lng]).addTo(map);
+    marker.bindPopup(location.name);
+});
+ */
+
+
 /** 
 // Function to get fill color based on feature properties
 function getFillColor(feature) {
@@ -119,50 +113,19 @@ var waterStyle = {
     .setContent("I am a standalone popup.")
     .openOn(map); */
 
-
-function onMapClick(e) {
-    alert("You clicked the map at " + e.latlng);
-    }
-
-    map.on('click', onMapClick);
-
-
-// Function to toggle the sidebar visibility
-function toggleSidebar() {
-    var sidebar = document.getElementById('sidebar');
-    if (sidebar.classList.contains('collapsed')) {
-        sidebar.classList.remove('collapsed');
-    } else {
-        sidebar.classList.add('collapsed');
-    }
-}
-
-// Function to show the specific page content and update active link styling
-function showPage(pageId, event) {
-    event.preventDefault(); // Prevent the default anchor link behavior
-
-    // Hide all pages
-    var pages = document.querySelectorAll('.page');
-    pages.forEach(function(page) {
-        page.classList.remove('active');
-    });
-
-    // Show the selected page
-    var selectedPage = document.getElementById(pageId);
-    selectedPage.classList.add('active');
-
-    // Remove 'active' class from all links
-    var links = document.querySelectorAll('.top-links a');
-    links.forEach(function(link) {
-        link.classList.remove('active');
-    });
-
-    // Add 'active' class to the clicked link
-    event.target.classList.add('active');
-}
-
-// Go to specific location on the map when a sidebar item is clicked
-function goToLocation(lat, lng) {
-    map.setView([lat, lng] , 11);
-}
-
+/** 
+// Load the global TopoJSON data for countries
+$.getJSON('countries-50m.json', function (topoData) { 
+    // Convert TopoJSON to GeoJSON and add it to the map
+    L.geoJson(topojson.feature(topoData, topoData.objects.countries), {
+        style: function (feature) { 
+            return {
+                'weight': 1,
+                'color': 'orange',       // Border color for countries
+                'fillColor': 'white',  // Dynamic fill color for countries
+                'fillOpacity': 0     // Fill opacity for countries
+            };
+        }
+    }).addTo(map); 
+});
+*/
