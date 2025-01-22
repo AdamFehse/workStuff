@@ -48,17 +48,22 @@ function showContent(category, keyword = '') {
     `;
 
     filteredProjects.forEach(project => {
+        const imageUrl = project['ImageUrl'] && project['ImageUrl'].trim() !== '' 
+            ? project['ImageUrl'] 
+            : 'https://via.placeholder.com/100';
+    
         tableHTML += `
             <tr>
                 <td class="image-cell">
                     <div class="image-placeholder">
-                        <img src="https://via.placeholder.com/100" alt="Project Image">
+                        <img src="${imageUrl}" alt="Project Image">
                     </div>
                 </td>
                 <td>${project['Project Name']}</td>
             </tr>
         `;
     });
+    
 
   tableHTML += `
                     </tbody>

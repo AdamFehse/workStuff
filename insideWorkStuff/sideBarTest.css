@@ -23,7 +23,7 @@
 
 
 #scrollableTableContainer {
-  max-height:26.25em;
+  max-height:26.25rem;
   max-width: max-content; 
   overflow-y: scroll;
   scrollbar-width: thin;
